@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: coredns-custom-lb
+  namespace: kube-system
+spec:
+  ports:
+  - name: https
+    port: 53
+    protocol: UDP
+    targetPort: 53
+  selector:
+    k8s-app: kube-dns-custom
+  type: LoadBalancer
+#  loadBalancerIP: "3ea1097f-d3c2-4bae-9b56-40b5f705c5ec"  #static ip - ncp 2.3.1 - ip pool id, ncp 2.4 - ip also
